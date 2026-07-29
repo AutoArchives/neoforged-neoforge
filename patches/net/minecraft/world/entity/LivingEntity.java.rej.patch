@@ -1,0 +1,20 @@
+--- /dev/null
++++ b/net/minecraft/world/entity/LivingEntity.java.rej
+@@ -1,0 +_,17 @@
++diff a/projects/neoforge/src/main/java/net/minecraft/world/entity/LivingEntity.java b/projects/neoforge/src/main/java/net/minecraft/world/entity/LivingEntity.java	(rejected hunks)
++@@ -2598,15 +2601,7 @@ public abstract class LivingEntity extends Entity implements Attackable, Waypoin
++         return computeModifiedFriction(this.omnidirectionalAirMover() ? 0.91F : 0.98F, (float)this.getAttributeValue(Attributes.AIR_DRAG_MODIFIER));
++     }
++ 
++-    /**
++-     * @deprecated Neo: use {@link #travelInFluid(Vec3, FluidState)} instead
++-     */
++-    @Deprecated
++     protected void travelInFluid(Vec3 input) {
++-        travelInFluid(input, net.minecraft.world.level.material.Fluids.EMPTY.defaultFluidState());
++-    }
++-
++-    private void travelInFluid(Vec3 input, FluidState fluidState) {
++         boolean isFalling = this.getDeltaMovement().y <= 0.0;
++         double oldY = this.getY();
++         double baseGravity = this.getEffectiveGravity();
